@@ -1,21 +1,16 @@
-const path = require("path");
-console.log(__filename);
-console.log(__dirname);
+const EventEmitter = require("events");
 
-console.log(path.basename(__filename));
-console.log(path.basename(__dirname));
+const emitter = new EventEmitter();
+//In that eample we register two listeners. We can register as many as we want
+emitter.on("order-pizza", (size, topping) => {
+  console.log(`Order received! Baking a ${size} pizza with ${topping}`);
+});
 
-console.log(path.extname(__filename));
-console.log(path.extname(__dirname));
+emitter.on("order-pizza", (size) => {
+    if (size === "large") {
+        console.log(`Serving drinks`);
+    }
+  });
+  
 
-console.log(path.parse(__filename));
-console.log(path.format(path.parse(__filename)));
-
-console.log(path.isAbsolute(__filename));
-
-console.log(path.join("/folder1", "//folder2", "index.html"));
-console.log(path.join("/folder1", "/folder2", "index.html"));
-console.log(path.join("/folder1", "/folder2", "../index.html"));
-console.log(path.join(__dirname, "../index.html"));
-
-console.log(path.resolve(__dirname, "data.json"))
+emitter.emit("order-pizza", "large", "mushroom");
