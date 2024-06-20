@@ -1,21 +1,21 @@
-// require("./batman.js");
-// require("./superman.js")
+const path = require("path");
+console.log(__filename);
+console.log(__dirname);
 
-// const superHero = require("./super-hero")
-// console.log(superHero.getName())
-// superHero.setName("Superman")
-// console.log(superHero.getName())
+console.log(path.basename(__filename));
+console.log(path.basename(__dirname));
 
-// //Module caching: Even though we create a new instance this will return the same value with the previous
-// const superHero2 = require("./super-hero")
-// console.log(superHero2.getName())
+console.log(path.extname(__filename));
+console.log(path.extname(__dirname));
 
-const SuperHero = require("./super-hero")
+console.log(path.parse(__filename));
+console.log(path.format(path.parse(__filename)));
 
-const batman = new SuperHero("Batman")
-console.log(batman.getName())
-batman.setName("Bruce")
-console.log(batman.getName())
+console.log(path.isAbsolute(__filename));
 
-const superman = new SuperHero("Superman")
-console.log(superman.getName())
+console.log(path.join("/folder1", "//folder2", "index.html"));
+console.log(path.join("/folder1", "/folder2", "index.html"));
+console.log(path.join("/folder1", "/folder2", "../index.html"));
+console.log(path.join(__dirname, "../index.html"));
+
+console.log(path.resolve(__dirname, "data.json"))
