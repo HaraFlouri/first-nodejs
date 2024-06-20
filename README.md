@@ -35,3 +35,19 @@
 - The syntax is stream based
 - Uses then and catch
 
+## libuv
+- Library that handles time consuming tasks without blocking the main thread. That because it contails a pool of threads
+- Javascript is single thread and blocking. For avoiding crashes and frozen apps we need libuv
+
+## crypto
+- Contains a pool of thread. 
+- crypto.pbkdf2
+- By default contains 4 threads but we can increase the size with process.env.UV_THREADPOOL_SIZE = 5
+
+## Build CLI Tools
+- Create a basic CLI tool using node and npm
+- Pass options to the CLI
+- Install yargs for passing argv
+- Add interactivity to the CLI. For that you need "inquirer" module. You do not need the yargs module anymore
+
+
