@@ -20,3 +20,4 @@
 - You can register as many listeners as you want using the on method
 - You can emit an event using the emit method. It accepts an event name passing in arguments
 - It helps to create non blocking code
+- Example code with inheritance pattern
