@@ -1,28 +1,27 @@
-const PizzaShop = require("./pizza-shop.js")
+const fs = require("node:fs");
+const { callbackify } = require("node:util");
 
-const pizzaShop = new PizzaShop()
+//This sync behaviour will block the main thread in case of a big size file
+const fileContents = fs.readFileSync("./file.txt", "utf-8");
+console.log(fileContents);
 
-pizzaShop.on("order", (size, topping) => {
-   console.log(`Order received! Baking a ${size} pizza with ${topping}`);
+//Callback pattern
+fs.readFile("./file.txt", "utf-8", (error, data) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
 });
 
-pizzaShop.order("large", "mushroom")
-pizzaShop.displayOrderNumber()
+//Create a file with sync behaviour
+fs.writeFileSync("./greet.txt", "Hello world");
 
-
-// const EventEmitter = require("events");
-
-// const emitter = new EventEmitter();
-// //In that eample we register two listeners. We can register as many as we want
-// emitter.on("order-pizza", (size, topping) => {
-//   console.log(`Order received! Baking a ${size} pizza with ${topping}`);
-// });
-
-// emitter.on("order-pizza", (size) => {
-//     if (size === "large") {
-//         console.log(`Serving drinks`);
-//     }
-//   });
-  
-
-// emitter.emit("order-pizza", "large", "mushroom");
+//This will overwrite the text inside the greet.txt and it is asyncronous as when the action finish it will update the console log 
+fs.writeFile("./greet.txt", "Hello Hara", (error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("File written");
+  }
+});
